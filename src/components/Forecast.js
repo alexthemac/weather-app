@@ -4,7 +4,7 @@ import './Forecast.css';
 
 function Forecast({ forecastDataArray, dateAndTimeFromdt, kelvinToCelsius }) {
 
-  const forecastArrayDivs = forecastDataArray.map((time) => {
+  const forecastArray = forecastDataArray.map((time) => {
     
     const dateAndTime = dateAndTimeFromdt(time.dt);
     const temp = kelvinToCelsius(time.main.temp) + " °C";
@@ -13,15 +13,30 @@ function Forecast({ forecastDataArray, dateAndTimeFromdt, kelvinToCelsius }) {
     const windSpeed = time.wind.speed + " m/sec";
     const description = time.weather[0].description;
 
-    return <div>
-              {dateAndTime} {temp} {minTemp} {maxTemp} {windSpeed} {description} 
-          </div>
+    return  <tr>
+              <td>{dateAndTime}</td>
+              <td>{temp}</td>
+              <td>{minTemp}</td>
+              <td>{maxTemp}</td>
+              <td>{windSpeed}</td>
+              <td>{description}</td>
+            </tr>
+  })
+
+
+  const tableHeaderStringArray = ["Date", "Temp.", "Min Temp.", "Max Temp.", "Wind", "Description"];
+
+  const tableHeaderArray = tableHeaderStringArray.map((header) => {
+    return <th>{header}</th>
   })
 
   return (
-    <div className="Forecast">
-      {forecastArrayDivs}
-    </div>
+    <table>
+      <tbody className="Forecast">
+        <tr>{tableHeaderArray}</tr>
+        {forecastArray}
+      </tbody>
+    </table>
   );
 }
 
