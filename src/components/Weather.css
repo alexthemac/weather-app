@@ -1,0 +1,5 @@
+.Weather {
+  border: 2px purple dotted;
+  display: flex;
+  flex-direction: column; 
+}
