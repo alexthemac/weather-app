@@ -16,4 +16,40 @@ const dateAndTimeFromdt = (dt) => {
 
 }
 
-module.exports = { dateAndTimeFromdt };
+//Given list of cities to supply weather data for
+const cities = [
+  {
+    id: 6167865,
+    name: "Toronto",
+    country: "CA"
+  },
+  {
+    id: 6094817,
+    name: "Ottawa",
+    country: "CA"
+  },
+  {
+    id: 1850147,
+    name: "Tokyo",
+    country: "JP"
+  }
+];
+
+//Finds the weatherapp id for a city name
+const cityIdFromCityName = (name) => {
+
+  let cityId = null
+
+  cities.forEach((city) => {
+    if (city.name === name) {
+      cityId = city.id;
+    } 
+  });
+
+  return cityId;
+}
+
+const kelvinToCelsius = kelvin => Math.round(kelvin - 273.15);
+
+
+module.exports = { dateAndTimeFromdt, cityIdFromCityName, kelvinToCelsius };

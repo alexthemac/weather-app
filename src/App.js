@@ -5,80 +5,58 @@ import axios from 'axios';
 import Weather from './components/Weather';
 import Forecast from './components/Forecast';
 require('dotenv').config();
-const {dateAndTimeFromdt} = require('./helpers');
+const { dateAndTimeFromdt, cityIdFromCityName, kelvinToCelsius } = require('./helpers');
 
 
 
 function App() {
 
-
   const [cityName, setCityName] = useState(""); 
   const [cityId, setCityId] = useState(null);
+  const [weatherDataObj, setWeatherDataObj] = useState({});
 
-  // console.log(dateAndTimeFromdt(1636511728));
+  let weatherMainDescription = Object.keys(weatherDataObj).length ? weatherDataObj.weather[0].main : "";
+  let weatherDetailedDescription = Object.keys(weatherDataObj).length ? weatherDataObj.weather[0].description : "";
+  let weatherCityName = Object.keys(weatherDataObj).length ? weatherDataObj.name : "";
+  //Need to convert to kelvin to celsius (subtract 273.15)
+  let weatherFeelsLikeCelsius = Object.keys(weatherDataObj).length ? kelvinToCelsius(weatherDataObj.main.feels_like) : null;
+  let weatherTemperatureCelsius = Object.keys(weatherDataObj).length ? kelvinToCelsius(weatherDataObj.main.temp) : null;
 
-  const cities = [
-    {
-      id: 6167865,
-      name: "Toronto",
-      country: "CA"
-    },
-    {
-      id: 6094817,
-      name: "Ottawa",
-      country: "CA"
-    },
-    {
-      id: 1850147,
-      name: "Tokyo",
-      country: "JP"
-    }
-  ];
+  console.log("RUN AGAIN");
+  console.log(weatherDataObj);
 
-  //Finds the weatherapp id for a city name
-  const cityIdFromCityName = (name) => {
-
-    let cityId = null
-
-    cities.forEach((city) => {
-      if (city.name === name) {
-        cityId = city.id;
-      } 
-    });
-
-    return cityId;
-  }
-
-  // console.log(cityIdFromCityName("Toronto"));
-
+  //Set the cityId based on whichever city is selected in drop down
   useEffect(() => {
     setCityId(cityIdFromCityName(cityName))
   }, [cityName])
 
+  //Set the weatherDataObj based on whichever city is selected in drop down
+  useEffect(() => {
 
+    if (cityId) {
+      axios.get(`http://api.openweathermap.org/data/2.5/weather?id=${cityId}&appid=${process.env.REACT_APP_OPEN_WEATHER_KEY}`)
+      .then(response => {
+        setWeatherDataObj(response.data);
+      })
+    }
+   
+    // axios.get(`http://api.openweathermap.org/data/2.5/forecast?id=${cities[1].id}&appid=${process.env.REACT_APP_OPEN_WEATHER_KEY}`)
+    // .then(response => {
+    //   console.log("FORECAST:", response);
+    // });
 
-  // useEffect(() => {
-
-  //   axios.get(`http://api.openweathermap.org/data/2.5/weather?id=${cities[1].id}&appid=${process.env.REACT_APP_OPEN_WEATHER_KEY}`)
-  //   .then(response => {
-  //     console.log("Weather:", response);
-  //   });
-
-  //   axios.get(`http://api.openweathermap.org/data/2.5/forecast?id=${cities[1].id}&appid=${process.env.REACT_APP_OPEN_WEATHER_KEY}`)
-  //   .then(response => {
-  //     console.log("FORECAST:", response);
-  //   });
-
-  // }, []);
-
-
-
+  }, [cityId]);
 
   return (
     <div className="App">
+      <Weather cityName={cityName} setCityName={setCityName}/>
       <div>{cityName}</div>
       <div>{cityId}</div>
-      <Weather cityName={cityName} setCityName={setCityName}/>
+      <div>{weatherCityName}</div>
+      <div>{weatherMainDescription}</div>
+      <div>{weatherDetailedDescription}</div>
+      { weatherTemperatureCelsius && <div>{`Current Temperature: ${weatherTemperatureCelsius}`}</div> }
+      { weatherFeelsLikeCelsius && <div>{`Feels like: ${weatherFeelsLikeCelsius}`}</div> }
       <Forecast/>
     </div>
   );
