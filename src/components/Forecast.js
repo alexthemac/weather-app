@@ -5,7 +5,7 @@ function Forecast() {
 
   return (
     <div className="Forecast">
-      FORECAST!
+      FORECAST!!!
     </div>
   );
 }
