@@ -1,17 +1,24 @@
 // import React from 'react';
 import './Weather.css';
 
-function Weather({setCityName}) {
+function Weather({weatherDataObj, kelvinToCelsius}) {
+
+  let weatherMainDescription = Object.keys(weatherDataObj).length ? weatherDataObj.weather[0].main : "";
+  let weatherDetailedDescription = Object.keys(weatherDataObj).length ? weatherDataObj.weather[0].description : "";
+  let weatherCityName = Object.keys(weatherDataObj).length ? weatherDataObj.name : "";
+  let weatherWind = Object.keys(weatherDataObj).length ? weatherDataObj.wind.speed : null;
+  //Temperatures provided by openweather api are in kelvin, need to convert to celsius
+  let weatherFeelsLikeCelsius = Object.keys(weatherDataObj).length ? kelvinToCelsius(weatherDataObj.main.feels_like) : null;
+  let weatherTemperatureCelsius = Object.keys(weatherDataObj).length ? kelvinToCelsius(weatherDataObj.main.temp) : null;
 
   return (
     <div className="Weather">
-      <select name="cities" id="city-select" onChange={event => setCityName(event.target.value)}>
-          <option value="">City</option>
-          <option value="Ottawa">Ottawa</option>
-          <option value="Toronto">Toronto</option>
-          <option value="Tokyo">Tokyo</option>
-      </select>
-      <label htmlFor="city-select">Please select city to see the forecast: </label>
+      <div>{weatherCityName}</div>
+      <div>{weatherMainDescription}</div>
+      <div>{weatherDetailedDescription}</div>
+      <div>{`Current Temperature: ${weatherTemperatureCelsius} °C`}</div>
+      <div>{`Feels like: ${weatherFeelsLikeCelsius} °C`}</div>
+      <div>{`Wind: ${weatherWind} m/sec`}</div> 
     </div>
   );
 }

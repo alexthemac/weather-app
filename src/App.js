@@ -5,10 +5,9 @@ import axios from 'axios';
 import Weather from './components/Weather';
 import Forecast from './components/Forecast';
 import ForecastButton from './components/ForecastButton';
+import CityDropDown from './components/CityDropDown';
 require('dotenv').config();
 const { dateAndTimeFromdt, cityIdFromCityName, kelvinToCelsius } = require('./helpers');
-
-
 
 function App() {
 
@@ -16,54 +15,50 @@ function App() {
   const [cityId, setCityId] = useState(null);
   const [weatherDataObj, setWeatherDataObj] = useState({});
   const [forecastShow, setForecastShow] = useState(false); 
-
-  let weatherMainDescription = Object.keys(weatherDataObj).length ? weatherDataObj.weather[0].main : "";
-  let weatherDetailedDescription = Object.keys(weatherDataObj).length ? weatherDataObj.weather[0].description : "";
-  let weatherCityName = Object.keys(weatherDataObj).length ? weatherDataObj.name : "";
-  //Temperatures provided by openweather api are in kelvin, need to convert to celsius
-  let weatherFeelsLikeCelsius = Object.keys(weatherDataObj).length ? kelvinToCelsius(weatherDataObj.main.feels_like) : null;
-  let weatherTemperatureCelsius = Object.keys(weatherDataObj).length ? kelvinToCelsius(weatherDataObj.main.temp) : null;
-  let weatherWind = Object.keys(weatherDataObj).length ? weatherDataObj.wind.speed : null;
+  const [forecastDataArray, setForecastDataArray] = useState({});
 
   console.log("RUN AGAIN");
-  console.log(weatherDataObj);
+  // console.log("WEATHER OBJ!:", weatherDataObj);
+  console.log("Forecast OBJ!:", forecastDataArray);
 
-  //Set the cityId based on whichever city is selected in drop down
+
+  //Set the cityId based on whichever city is selected in CityDropDown component
   useEffect(() => {
+
+    console.log("setCityId useEffect RAN again")
     setCityId(cityIdFromCityName(cityName))
   }, [cityName])
 
-  //Set the weatherDataObj based on whichever city is selected in drop down
+  //Set the weatherDataObj based on whichever city is CityDropDown component
   useEffect(() => {
+
+    console.log("axios.get useEffect RAN again");
+
     if (cityId) {
+
       axios.get(`http://api.openweathermap.org/data/2.5/weather?id=${cityId}&appid=${process.env.REACT_APP_OPEN_WEATHER_KEY}`)
       .then(response => {
         setWeatherDataObj(response.data);
-      })
+      });
+
+      axios.get(`http://api.openweathermap.org/data/2.5/forecast?id=${cityId}&appid=${process.env.REACT_APP_OPEN_WEATHER_KEY}`)
+      .then(response => {
+        setForecastDataArray(response.data.list);
+      });
+
     } else {
       setWeatherDataObj({});
+      setForecastDataArray([]);
     }
-   
-    // axios.get(`http://api.openweathermap.org/data/2.5/forecast?id=${cities[1].id}&appid=${process.env.REACT_APP_OPEN_WEATHER_KEY}`)
-    // .then(response => {
-    //   console.log("FORECAST:", response);
-    // });
 
   }, [cityId]);
 
   return (
     <div className="App">
-      <Weather cityName={cityName} setCityName={setCityName}/>
-      {/* <div>{cityName}</div>
-      <div>{cityId}</div> */}
-      <div>{weatherCityName}</div>
-      <div>{weatherMainDescription}</div>
-      <div>{weatherDetailedDescription}</div>
-      { weatherTemperatureCelsius && <div>{`Current Temperature: ${weatherTemperatureCelsius} °C`}</div> }
-      { weatherFeelsLikeCelsius && <div>{`Feels like: ${weatherFeelsLikeCelsius} °C`}</div> }
-      { weatherWind && <div>{`Wind: ${weatherWind} m/sec`}</div> }
+      <CityDropDown cityName={cityName} setCityName={setCityName}/>
+      { Object.keys(weatherDataObj).length > 0 && <Weather weatherDataObj={weatherDataObj} kelvinToCelsius={kelvinToCelsius} /> }      
       { Object.keys(weatherDataObj).length > 0 && <ForecastButton forecastShow={forecastShow} setForecastShow={setForecastShow} /> }
-      { forecastShow === true && <Forecast/> }
+      { forecastShow === true && <Forecast forecastDataArray={forecastDataArray} dateAndTimeFromdt={dateAndTimeFromdt} kelvinToCelsius={kelvinToCelsius} /> }
     </div>
   );
 }
