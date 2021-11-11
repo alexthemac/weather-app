@@ -1,6 +1,8 @@
 import './Forecast.css';
 import { useState } from 'react';
 import DayButtons from './DayButtons';
+import Table from 'react-bootstrap/Table'
+
 
 
 function Forecast({ forecastDataArray, dateAndTimeFromdt, kelvinToCelsius }) {
@@ -54,12 +56,14 @@ function Forecast({ forecastDataArray, dateAndTimeFromdt, kelvinToCelsius }) {
   return (
     <div>
       {`current day: ${day}`}
-      <table>
-        <tbody className="Forecast">
+      <Table striped bordered>
+        <thead>
           <tr>{tableHeaderArray}</tr>
+        </thead>
+        <tbody>
           {forecastArrayFiltered}
         </tbody>
-      </table>
+      </Table>
       <DayButtons daysArray={daysArray} setDay={setDay}/>
     </div>
   );
