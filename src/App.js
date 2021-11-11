@@ -6,6 +6,7 @@ import Weather from './components/Weather';
 import Forecast from './components/Forecast';
 import ForecastButton from './components/ForecastButton';
 import CityDropDown from './components/CityDropDown';
+import Header from './components/Header';
 const { dateAndTimeFromdt, cityIdFromCityName, kelvinToCelsius } = require('./helpers');
 require('dotenv').config();
 
@@ -55,6 +56,7 @@ function App() {
 
   return (
     <div className="App">
+      <Header/>
       <CityDropDown cityName={cityName} setCityName={setCityName}/>
       { Object.keys(weatherDataObj).length > 0 && <Weather weatherDataObj={weatherDataObj} kelvinToCelsius={kelvinToCelsius} /> }      
       { Object.keys(weatherDataObj).length > 0 && <ForecastButton forecastShow={forecastShow} setForecastShow={setForecastShow} /> }
