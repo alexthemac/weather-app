@@ -6,8 +6,8 @@ import Weather from './components/Weather';
 import Forecast from './components/Forecast';
 import ForecastButton from './components/ForecastButton';
 import CityDropDown from './components/CityDropDown';
-require('dotenv').config();
 const { dateAndTimeFromdt, cityIdFromCityName, kelvinToCelsius } = require('./helpers');
+require('dotenv').config();
 
 function App() {
 
