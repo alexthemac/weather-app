@@ -1,0 +1,21 @@
+.day-buttons {
+  background: rgb(252, 84, 34);
+  display: table-cell;
+  width: auto;
+  height: 45px;
+  padding: 0 30px;
+  border-radius: 25px;
+  box-shadow: rgb(0 0 0 / 25%) 0 2px 5px;
+  font-family: sans-serif;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: bold;
+  font-size: 14px;
+  color: #fff;
+  cursor: pointer;
+  border-width: 0px;
+}
+
+
+
+  

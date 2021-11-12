@@ -3,7 +3,9 @@ import './Header.css';
 
 function Header({}) {
   return (
-    <h1>Weather Forecast</h1>
+    <h1 className="header"> 
+      <span className="grey">w</span><span className="orange">e</span><span className="grey">ather FORECAST</span>
+    </h1>
   );
 }
 
