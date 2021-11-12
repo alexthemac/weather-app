@@ -1,4 +1,5 @@
 .background {
+  height: 20vh;
 
   background: linear-gradient(
   180deg
@@ -9,6 +10,8 @@
 .footer {
   font-family: Montserrat,sans-serif;
   font-weight: 700;
+  padding: 8px;
+  margin: 0px;
 }
 
 .white {

@@ -6,11 +6,11 @@ import ToggleButton from 'react-bootstrap/ToggleButton'
 function DayButtons({ daysArray, setDay }) {
 
   const dayButtonsArray = daysArray.map((day) => {
-    return <button className="day-buttons" key={day} onClick={() => setDay(day)} >{day}</button>
+    return <button className="day-buttons" key={day} onClick={() => setDay(day)}>{day}</button>
   })
 
   return (
-    <div>
+    <div class="day-buttons-container">
       {dayButtonsArray}
     </div>
   );

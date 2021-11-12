@@ -52,4 +52,4 @@ const cityIdFromCityName = (name) => {
 const kelvinToCelsius = kelvin => Math.round(kelvin - 273.15);
 
 
-module.exports = { dateAndTimeFromdt, cityIdFromCityName, kelvinToCelsius };
+module.exports = { dateAndTimeFromdt, cityIdFromCityName, kelvinToCelsius, cities };

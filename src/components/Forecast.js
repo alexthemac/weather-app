@@ -24,16 +24,16 @@ function Forecast({ forecastDataArray, dateAndTimeFromdt, kelvinToCelsius }) {
     const temp = kelvinToCelsius(time.main.temp) + " °C";
     const minTemp = kelvinToCelsius(time.main.temp_min) + " °C";
     const maxTemp = kelvinToCelsius(time.main.temp_max) + " °C";
-    const windSpeed = time.wind.speed + " m/sec";
+    const windSpeed = Math.round(time.wind.speed * 10) / 10  + " m/sec";
     const description = time.weather[0].description;
 
     return  <tr key={dateAndTime}>
-              <td>{dateAndTime}</td>
-              <td>{temp}</td>
-              <td>{minTemp}</td>
-              <td>{maxTemp}</td>
-              <td>{windSpeed}</td>
-              <td>{description}</td>
+              <td className="text-center">{dateAndTime}</td>
+              <td className="text-center">{temp}</td>
+              <td className="text-center">{minTemp}</td>
+              <td className="text-center">{maxTemp}</td>
+              <td className="text-center">{windSpeed}</td>
+              <td className="text-center">{description}</td>
             </tr>
   });
 
@@ -50,13 +50,13 @@ function Forecast({ forecastDataArray, dateAndTimeFromdt, kelvinToCelsius }) {
   //Create table headers
   const tableHeaderStringArray = ["Date", "Temp.", "Min Temp.", "Max Temp.", "Wind", "Description"];
   const tableHeaderArray = tableHeaderStringArray.map((header) => {
-    return <th key={header}>{header}</th>
+    return <th className="text-center" key={header}>{header}</th>
   })
 
   return (
-    <div>
-      {`current day: ${day}`}
-      <Table striped bordered>
+    <div className="forecast-container">
+      {/* {`current day: ${day}`} */}
+      <Table className="forecast-table" striped bordered>
         <thead>
           <tr>{tableHeaderArray}</tr>
         </thead>
