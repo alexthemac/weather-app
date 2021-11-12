@@ -27,7 +27,7 @@ function Forecast({ forecastDataArray, dateAndTimeFromdt, kelvinToCelsius }) {
     const windSpeed = time.wind.speed + " m/sec";
     const description = time.weather[0].description;
 
-    return  <tr>
+    return  <tr key={dateAndTime}>
               <td>{dateAndTime}</td>
               <td>{temp}</td>
               <td>{minTemp}</td>
@@ -50,7 +50,7 @@ function Forecast({ forecastDataArray, dateAndTimeFromdt, kelvinToCelsius }) {
   //Create table headers
   const tableHeaderStringArray = ["Date", "Temp.", "Min Temp.", "Max Temp.", "Wind", "Description"];
   const tableHeaderArray = tableHeaderStringArray.map((header) => {
-    return <th>{header}</th>
+    return <th key={header}>{header}</th>
   })
 
   return (
