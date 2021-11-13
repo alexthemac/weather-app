@@ -2,6 +2,7 @@
 import './CityDropDown.css';
 import { cities } from "../helpers";
 
+
 function CityDropDown({cityName, setCityName}) {
 
   // const citiesArray = cities.map{ }

@@ -1,9 +1,10 @@
 .header {
   font-family: Montserrat,sans-serif;
   font-weight: 700;
-  height: 10vh;
-  padding: 8px;
+  /* height: 10vh; */
+  padding: 2vw;
   margin: 0px;
+  background: white;
   
 }
 

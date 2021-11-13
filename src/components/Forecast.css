@@ -6,12 +6,13 @@
   background-image: linear-gradient(
   180deg
 ,#dee8f4,#fff);
+ padding: 2vw;
 }
 
 .forecast-table {
   font-size: 1.5vw;
   font-family: Montserrat;
-  width: 40vw;
+  /* width: 40vw; */
 
   
 
