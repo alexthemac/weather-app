@@ -20,6 +20,7 @@ function App() {
   const [weatherDataObj, setWeatherDataObj] = useState({});
   const [forecastShow, setForecastShow] = useState(false); 
   const [forecastDataArray, setForecastDataArray] = useState({});
+  // const [weatherIcon, setWeatherIcon] = useState("");
 
   console.log("RUN AGAIN");
   // console.log("WEATHER OBJ!:", weatherDataObj);
@@ -43,11 +44,22 @@ function App() {
       axios.get(`http://api.openweathermap.org/data/2.5/weather?id=${cityId}&appid=${process.env.REACT_APP_OPEN_WEATHER_KEY}`)
       .then(response => {
         setWeatherDataObj(response.data);
+        console.log("WEATHER RESPONSE:", response)
+        // axios.get(`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`, {responseType: 'blob'})
+        // .then((response) => {
+        //   console.log("ICON!!!", response);
+        //   setWeatherIcon(response);
+        // })
       });
+      // .then(() => {
+      //   axios.get(`http://openweathermap.org/img/wn/${weatherDataObj.weather[0].icon}@2x.png`)
+      // })
 
       axios.get(`http://api.openweathermap.org/data/2.5/forecast?id=${cityId}&appid=${process.env.REACT_APP_OPEN_WEATHER_KEY}`)
       .then(response => {
         setForecastDataArray(response.data.list);
+        console.log("Forecast RESPONSE:", response)
+
       });
 
     } else {

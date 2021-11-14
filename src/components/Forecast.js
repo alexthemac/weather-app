@@ -6,6 +6,8 @@ import Table from 'react-bootstrap/Table'
 
 
 function Forecast({ forecastDataArray, dateAndTimeFromdt, kelvinToCelsius }) {
+
+  console.log("FORECASTDATAARRAY:", forecastDataArray);
   
   
   const daysArray = [];
@@ -21,6 +23,9 @@ function Forecast({ forecastDataArray, dateAndTimeFromdt, kelvinToCelsius }) {
       daysArray.push(date);
     }
 
+  
+    const forecastIcon = time.weather[0].icon;
+    const forecastIconLocation = `/images/${forecastIcon}@2x.png`
     const temp = kelvinToCelsius(time.main.temp) + " °C";
     const minTemp = kelvinToCelsius(time.main.temp_min) + " °C";
     const maxTemp = kelvinToCelsius(time.main.temp_max) + " °C";
@@ -28,6 +33,7 @@ function Forecast({ forecastDataArray, dateAndTimeFromdt, kelvinToCelsius }) {
     const description = time.weather[0].description;
 
     return  <tr key={dateAndTime}>
+              <td className="text-center"><img src={forecastIconLocation}></img></td>
               <td className="text-center">{dateAndTime}</td>
               <td className="text-center">{temp}</td>
               <td className="text-center">{minTemp}</td>
@@ -42,13 +48,13 @@ function Forecast({ forecastDataArray, dateAndTimeFromdt, kelvinToCelsius }) {
 
   //Filter the table based on which day is selected by the DayButtons
   const forecastArrayFiltered = forecastArray.filter((time) => {
-    if (time.props.children[0].props.children.slice(0,6) === day) {
+    if (time.props.children[1].props.children.slice(0,6) === day) {
       return time;
     };
   });
 
   //Create table headers
-  const tableHeaderStringArray = ["Date", "Temp.", "Min Temp.", "Max Temp.", "Wind", "Description"];
+  const tableHeaderStringArray = ["", "Date", "Temp.", "Min Temp.", "Max Temp.", "Wind", "Description"];
   const tableHeaderArray = tableHeaderStringArray.map((header) => {
     return <th className="text-center" key={header}>{header}</th>
   })
