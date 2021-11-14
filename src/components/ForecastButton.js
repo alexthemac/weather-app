@@ -1,7 +1,5 @@
 // import React from 'react';
 import './ForecastButton.css';
-import Button from 'react-bootstrap/Button'
-
 
 function ForecastButton({forecastShow, setForecastShow}) {
   return (

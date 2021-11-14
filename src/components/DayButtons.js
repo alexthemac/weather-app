@@ -1,7 +1,4 @@
 import './DayButtons.css';
-import Button from 'react-bootstrap/Button'
-import ToggleButton from 'react-bootstrap/ToggleButton'
-
 
 function DayButtons({ daysArray, setDay }) {
 
@@ -10,7 +7,7 @@ function DayButtons({ daysArray, setDay }) {
   })
 
   return (
-    <div class="day-buttons-container">
+    <div className="day-buttons-container">
       {dayButtonsArray}
     </div>
   );

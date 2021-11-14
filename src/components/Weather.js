@@ -5,17 +5,17 @@ function Weather({weatherDataObj, kelvinToCelsius}) {
 
   let weatherMainDescription = Object.keys(weatherDataObj).length ? weatherDataObj.weather[0].main : "";
   let weatherDetailedDescription = Object.keys(weatherDataObj).length ? weatherDataObj.weather[0].description : "";
-  let weatherCityName = Object.keys(weatherDataObj).length ? weatherDataObj.name : "";
   let weatherWind = Object.keys(weatherDataObj).length ? Math.round(weatherDataObj.wind.speed * 10) / 10  : null;
+
   //Temperatures provided by openweather api are in kelvin, need to convert to celsius
   // let weatherFeelsLikeCelsius = Object.keys(weatherDataObj).length ? kelvinToCelsius(weatherDataObj.main.feels_like) : null;
   let weatherTemperatureCelsius = Object.keys(weatherDataObj).length ? kelvinToCelsius(weatherDataObj.main.temp) : null;
   let weatherIcon = Object.keys(weatherDataObj).length ? weatherDataObj.weather[0].icon : null;
-  let weatherIconLocation= `/images/${weatherIcon}@2x.png`
+  let weatherIconLocation = `/images/${weatherIcon}@2x.png`
 
   return (
     <div className="Weather">
-      <img src={weatherIconLocation} ></img>
+      <img src={weatherIconLocation} alt="weatherIcon"></img>
       <div className="weather-details">
         <div>{weatherMainDescription}</div>
         <div>{weatherDetailedDescription}</div>

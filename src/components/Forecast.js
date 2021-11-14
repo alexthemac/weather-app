@@ -33,7 +33,7 @@ function Forecast({ forecastDataArray, dateAndTimeFromdt, kelvinToCelsius }) {
     const description = time.weather[0].description;
 
     return  <tr key={dateAndTime}>
-              <td className="text-center"><img src={forecastIconLocation}></img></td>
+              <td className="text-center"><img src={forecastIconLocation} alt="forecastIcon"></img></td>
               <td className="text-center">{dateAndTime}</td>
               <td className="text-center">{temp}</td>
               <td className="text-center">{minTemp}</td>
@@ -51,6 +51,7 @@ function Forecast({ forecastDataArray, dateAndTimeFromdt, kelvinToCelsius }) {
     if (time.props.children[1].props.children.slice(0,6) === day) {
       return time;
     };
+    return false;
   });
 
   //Create table headers
