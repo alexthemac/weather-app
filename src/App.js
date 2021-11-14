@@ -72,10 +72,16 @@ function App() {
   return (
     <div className="App">
       <Header/>
-      <CityDropDown cityName={cityName} setCityName={setCityName}/>
-      { Object.keys(weatherDataObj).length > 0 && <Weather weatherDataObj={weatherDataObj} kelvinToCelsius={kelvinToCelsius} /> }      
-      { Object.keys(weatherDataObj).length > 0 && <ForecastButton forecastShow={forecastShow} setForecastShow={setForecastShow} /> }
-      { forecastShow === true && cityName !== "" && <Forecast forecastDataArray={forecastDataArray} dateAndTimeFromdt={dateAndTimeFromdt} kelvinToCelsius={kelvinToCelsius} /> }
+      <div className="weather-forecast">
+        <div>
+          <CityDropDown cityName={cityName} setCityName={setCityName}/>
+          { Object.keys(weatherDataObj).length > 0 && <Weather weatherDataObj={weatherDataObj} kelvinToCelsius={kelvinToCelsius} /> }      
+        </div>
+        <div>
+          { Object.keys(weatherDataObj).length > 0 && <ForecastButton forecastShow={forecastShow} setForecastShow={setForecastShow} /> }
+          { forecastShow === true && cityName !== "" && <Forecast forecastDataArray={forecastDataArray} dateAndTimeFromdt={dateAndTimeFromdt} kelvinToCelsius={kelvinToCelsius} /> }
+        </div>
+      </div>
       <Footer/>
     </div>
   );
