@@ -33,13 +33,13 @@ function Forecast({ forecastDataArray, dateAndTimeFromdt, kelvinToCelsius }) {
     const description = time.weather[0].description;
 
     return  <tr key={dateAndTime}>
-              <td className="text-center"><img src={forecastIconLocation} alt="forecastIcon"></img></td>
-              <td className="text-center">{dateAndTime}</td>
-              <td className="text-center">{temp}</td>
-              <td className="text-center">{minTemp}</td>
-              <td className="text-center">{maxTemp}</td>
-              <td className="text-center">{windSpeed}</td>
-              <td className="text-center">{description}</td>
+              <td className="table-row"><img src={forecastIconLocation} alt="forecastIcon"></img></td>
+              <td className="table-row">{dateAndTime}</td>
+              <td className="table-row">{temp}</td>
+              <td className="table-row">{minTemp}</td>
+              <td className="table-row">{maxTemp}</td>
+              <td className="table-row">{windSpeed}</td>
+              <td className="table-row">{description}</td>
             </tr>
   });
 
@@ -62,7 +62,7 @@ function Forecast({ forecastDataArray, dateAndTimeFromdt, kelvinToCelsius }) {
 
   return (
     <div className="forecast-container">
-      {/* {`current day: ${day}`} */}
+      <DayButtons daysArray={daysArray} setDay={setDay}/>
       <Table className="forecast-table" striped bordered>
         <thead>
           <tr>{tableHeaderArray}</tr>
@@ -71,7 +71,6 @@ function Forecast({ forecastDataArray, dateAndTimeFromdt, kelvinToCelsius }) {
           {forecastArrayFiltered}
         </tbody>
       </Table>
-      <DayButtons daysArray={daysArray} setDay={setDay}/>
     </div>
   );
 }

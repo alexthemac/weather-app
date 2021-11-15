@@ -1,17 +1,14 @@
 .background {
-  /* height: 20vh; */
-
-  background: linear-gradient(
-  180deg
-  ,#042757,#104a96);
-
+  background: linear-gradient(180deg,#042757,#104a96);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .footer {
   font-family: Montserrat,sans-serif;
   font-weight: 700;
-  padding: 8px;
-  margin: 0px;
+  padding: 2vw;
 }
 
 .white {
@@ -20,4 +17,8 @@
 
 .orange {
   color: #ff5422;
+}
+
+.small {
+  font-weight: 200;
 }

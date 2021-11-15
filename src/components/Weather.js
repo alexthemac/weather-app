@@ -14,8 +14,8 @@ function Weather({weatherDataObj, kelvinToCelsius}) {
   let weatherIconLocation = `/images/${weatherIcon}@2x.png`
 
   return (
-    <div className="Weather">
-      <img src={weatherIconLocation} alt="weatherIcon"></img>
+    <div className="weather">
+      <img src={weatherIconLocation} className="weather-icon" alt="weather-icon" width="200px" height="200px"></img>
       <div className="weather-details">
         <div>{weatherMainDescription}</div>
         <div>{weatherDetailedDescription}</div>

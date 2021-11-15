@@ -5,7 +5,6 @@ import axios from 'axios';
 import Weather from './components/Weather';
 import Forecast from './components/Forecast';
 import ForecastButton from './components/ForecastButton';
-import CityDropDown from './components/CityDropDown';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -20,10 +19,9 @@ function App() {
   const [weatherDataObj, setWeatherDataObj] = useState({});
   const [forecastShow, setForecastShow] = useState(false); 
   const [forecastDataArray, setForecastDataArray] = useState({});
-  // const [weatherIcon, setWeatherIcon] = useState("");
+
 
   console.log("RUN AGAIN");
-  // console.log("WEATHER OBJ!:", weatherDataObj);
   console.log("Forecast OBJ!:", forecastDataArray);
 
 
@@ -71,13 +69,13 @@ function App() {
 
   return (
     <div className="App">
-      <Header/>
+      <Header cityName={cityName} setCityName={setCityName} />
+
       <div className="weather-forecast">
         <div>
-          <CityDropDown cityName={cityName} setCityName={setCityName}/>
           { Object.keys(weatherDataObj).length > 0 && <Weather weatherDataObj={weatherDataObj} kelvinToCelsius={kelvinToCelsius} /> }      
         </div>
-        <div>
+        <div className="forecast">
           { Object.keys(weatherDataObj).length > 0 && <ForecastButton forecastShow={forecastShow} setForecastShow={setForecastShow} /> }
           { forecastShow === true && cityName !== "" && <Forecast forecastDataArray={forecastDataArray} dateAndTimeFromdt={dateAndTimeFromdt} kelvinToCelsius={kelvinToCelsius} /> }
         </div>
