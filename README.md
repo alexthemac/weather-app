@@ -1,19 +1,16 @@
 # weather FORECAST
 
-weather FORECAST is a simple single page React app that gets weather data from OpenWeather map API. It can display the current weather and 5 day forecast for Ottawa, Toronto and Tokyo. 
+## About
 
-## Getting Startred
+weather FORECAST is a simple single page React app that fetches weather data from the OpenWeather map API. It can display the current weather and 5 day forecast for Ottawa, Toronto and Tokyo. 
 
-1. Clone repository in your local folder
+[AppDemo](/public/AppDemo.gif)
 
-## Available Scripts
+## Getting Started
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. Clone repository in your local folder: ```git@github.com:alexthemac/weather-app.git```
+1. Switch into the project folder: ```cd weather-app```
+1. Install all dependencies: ```npm install```
+1. Copy the the ```.env.example``` file and rename the copy to ```.env```.
+1. Enter the OpenWeather map API key in the ```.env``` file. 
+1. Run the client using ```npm start``` command from the root directory. 
