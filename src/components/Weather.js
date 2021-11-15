@@ -1,6 +1,6 @@
 import './Weather.css';
 
-function Weather({weatherDataObj, kelvinToCelsius}) {
+function Weather({ weatherDataObj, kelvinToCelsius }) {
 
   let weatherMainDescription = Object.keys(weatherDataObj).length ? weatherDataObj.weather[0].main : "";
   let weatherDetailedDescription = Object.keys(weatherDataObj).length ? weatherDataObj.weather[0].description : "";

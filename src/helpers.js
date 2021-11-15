@@ -8,10 +8,6 @@ const dateAndTimeFromdt = (dt) => {
   //format: (Ex Nov 9, 10 PM)
   const dateAsString = dateObject.toLocaleString("en-US", { month: 'short', day: 'numeric', hour: "numeric" });
 
-  //Can also return as array of [date, time]
-  // const date = dateAsString.slice(0, 10);
-  // const time = dateAsString.slice(12);
-
   return dateAsString;
 
 }
@@ -49,6 +45,7 @@ const cityIdFromCityName = (name) => {
   return cityId;
 }
 
+//Converts degrees kelvin to degrees C (data returned from api is in kelvin)
 const kelvinToCelsius = kelvin => Math.round(kelvin - 273.15);
 
 
