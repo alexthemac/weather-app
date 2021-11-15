@@ -4,7 +4,7 @@
 
 weather FORECAST is a simple single page React app that fetches weather data from the OpenWeather map API. It can display the current weather and 5 day forecast for Ottawa, Toronto and Tokyo. 
 
-[AppDemo](/public/AppDemo.gif)
+![AppDemo](/public/AppDemo.gif)
 
 ## Getting Started
 
