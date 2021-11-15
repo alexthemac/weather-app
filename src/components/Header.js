@@ -1,10 +1,8 @@
-// import React from 'react';
 import './Header.css';
 import CityDropDown from './CityDropDown';
 
 function Header({cityName, setCityName}) {
   return (
-    
     <h1 className="header"> 
       <div>
         <span className="grey">w</span><span className="orange">e</span><span className="grey">ather FORECAST</span>

@@ -1,6 +1,4 @@
-// import React from 'react';
 import './CityDropDown.css';
-
 
 function CityDropDown({ setCityName }) {
 

@@ -1,4 +1,3 @@
-// import React from 'react';
 import './Weather.css';
 
 function Weather({weatherDataObj, kelvinToCelsius}) {

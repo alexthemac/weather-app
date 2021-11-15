@@ -3,12 +3,7 @@ import { useState } from 'react';
 import DayButtons from './DayButtons';
 import Table from 'react-bootstrap/Table'
 
-
-
 function Forecast({ forecastDataArray, dateAndTimeFromdt, kelvinToCelsius }) {
-
-  console.log("FORECASTDATAARRAY:", forecastDataArray);
-  
   
   const daysArray = [];
 
@@ -23,7 +18,6 @@ function Forecast({ forecastDataArray, dateAndTimeFromdt, kelvinToCelsius }) {
       daysArray.push(date);
     }
 
-  
     const forecastIcon = time.weather[0].icon;
     const forecastIconLocation = `/images/${forecastIcon}@2x.png`
     const temp = kelvinToCelsius(time.main.temp) + " °C";

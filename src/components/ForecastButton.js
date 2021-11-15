@@ -1,4 +1,3 @@
-// import React from 'react';
 import './ForecastButton.css';
 
 function ForecastButton({forecastShow, setForecastShow}) {
