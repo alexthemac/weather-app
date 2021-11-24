@@ -27,14 +27,29 @@ function App() {
   //Set the weatherDataObj based on whichever city is CityDropDown component
   useEffect(() => {
     if (cityId) {
-      axios.get(`https://api.openweathermap.org/data/2.5/weather?id=${cityId}&appid=${REACT_APP_OPEN_WEATHER_KEY || process.env.REACT_APP_OPEN_WEATHER_KEY}`)
+
+      axios.get(`/.netlify/functions/fetch-weather?cityId=${cityId}`)
       .then(response => {
+        console.log(response.data);
         setWeatherDataObj(response.data);
       });
-      axios.get(`https://api.openweathermap.org/data/2.5/forecast?id=${cityId}&appid=${REACT_APP_OPEN_WEATHER_KEY || process.env.REACT_APP_OPEN_WEATHER_KEY}`)
+
+      // axios.get(`https://api.openweathermap.org/data/2.5/weather?id=${cityId}&appid=${process.env.REACT_APP_OPEN_WEATHER_KEY}`)
+      // .then(response => {
+      //   setWeatherDataObj(response.data);
+      // });
+
+
+      axios.get(`/.netlify/functions/fetch-forecast?cityId=${cityId}`)
       .then(response => {
+        console.log(response.data);
         setForecastDataArray(response.data.list);
       });
+
+      // axios.get(`https://api.openweathermap.org/data/2.5/forecast?id=${cityId}&appid=${process.env.REACT_APP_OPEN_WEATHER_KEY}`)
+      // .then(response => {
+      //   setForecastDataArray(response.data.list);
+      // });
     } else {
       setWeatherDataObj({});
       setForecastDataArray([]);
